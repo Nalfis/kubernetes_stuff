@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: finance-calculator
+  name: finance-calculator
+  namespace: finance
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finance-calculator
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: finance-calculator
+    spec:
+      containers:
+      - image: nalfis/financecalculator
+        command: ["/bin/sh"]
+        args:
+          - -c
+          - python finance.py -ct cmp -p 600000 -t 30 -i 2.8 -m 12 -camort
+        imagePullPolicy: Always
+        name: financecalculator
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
