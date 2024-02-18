@@ -46,6 +46,7 @@ metadata:
 spec:
   selector:
     app: mongo-express
+  ## for some unknown reason LoadBalancer doesnt work with Docker Desktop for Windows so I used NodePort instead
   type: NodePort  
   # type: LoadBalancer
   ports:
@@ -62,10 +63,7 @@ metadata:
 spec:
   selector:
     app: mongo-express
-  # type: NodePort  
-  # type: LoadBalancer
   ports:
     - protocol: TCP
       port: 8081
       targetPort: 8081
-      # nodePort: 30000
