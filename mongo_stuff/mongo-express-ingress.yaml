@@ -6,9 +6,13 @@ metadata:
     # kubernetes.io/ingress.class: "nginx"
   namespace: practice
 spec:
+  tls:
+  - hosts:
+    - mongoexpress.learn
+    secretName: mongoexpress-tls-ingress
   ingressClassName: nginx
   rules:
-    - host: "mongoexpress.learn"
+    - host: mongoexpress.learn
       http:
         paths:
           - path: /
