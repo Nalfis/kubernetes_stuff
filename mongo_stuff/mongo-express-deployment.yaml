@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: mongo-express
-  name: mongo-express-deployment
+  name: mongo-express
   namespace: practice
 spec:
   replicas: 1

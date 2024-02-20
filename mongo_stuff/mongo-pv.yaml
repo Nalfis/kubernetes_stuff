@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  namespace: prometheus
+  name: mongodb-pv
+  labels:
+    app: mongodb
+spec:
+  storageClassName: hostpath
+  capacity:
+    storage: 5Gi   # Set the desired storage size
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+  hostPath:
+    path: /run/desktop/mnt/host/c/Temp/MongoDB/
