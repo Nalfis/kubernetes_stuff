@@ -16,7 +16,8 @@ spec:
         app: mongodb
     spec:
       volumes:
-      - name: mongodb-pvc  
+      - name: mongodb-pvc
+# keeping the persistentVolumeClain reference here even if I don't need one for statefulsets        
         # persistentVolumeClaim:
         #   claimName: mongodb-pvc
       containers:
@@ -39,6 +40,7 @@ spec:
             secretKeyRef:
               name: mongodb-secret
               key: mongo-root-password
+# volumeClaimTemplates replaces pvc for deployments, just use the name of the pv and it works              
   volumeClaimTemplates:
   - metadata:
       name: mongodb-pv
@@ -48,7 +50,8 @@ spec:
       storageClassName: hostpath
       resources:
         requests:
-          storage: 5Gi
+          storage: 1Gi
+# Headless service for statefulset
 ---
 apiVersion: v1
 kind: Service
